@@ -1,13 +1,14 @@
 package com.learning.mockito_tutorial;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+public class App {
+
+	public static void main(String[] args) {
+		SentenceOfADay sentenceOfADay = null;
+		sentenceOfADay = new SentenceOfADay();
+		String sentence = sentenceOfADay.getSentence();
+
+		System.out.println(sentence);
+
+	}
+
 }
