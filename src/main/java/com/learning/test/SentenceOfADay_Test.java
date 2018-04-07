@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-
-
 import com.learning.mockito_tutorial.DatabaseInterface;
 import com.learning.mockito_tutorial.SentenceOfADay;
 import com.learning.mockito_tutorial.ServerInterface;
@@ -35,6 +33,8 @@ public class SentenceOfADay_Test {
 		when(databaseForTest.has("Hello")).thenReturn(true);
 
 		assertEquals(SentenceOfADay.sentenceIsInDatabase, sentenseOfADay.getSentence());
+		
+		verify(databaseForTest, atLeastOnce()).has("Hello");
 	}
 	
 	@Test
@@ -43,6 +43,8 @@ public class SentenceOfADay_Test {
 		when(databaseForTest.has("Hello")).thenReturn(false);
 		
 		assertEquals(serverForTest.getTodaysSentence(), sentenseOfADay.getSentence());
+
+		verify(databaseForTest, atLeastOnce()).has("Hello");
 	}
 
 }
