@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.learning.mockito_tutorial.Database;
@@ -12,7 +13,16 @@ import com.learning.mockito_tutorial.SentenceOfADay;
 import com.learning.mockito_tutorial.Server;
 
 public class SentenceOfADay_Test {
-
+	DatabaseForTest databaseForTest;
+	ServerForTest serverForTest;
+	SentenceOfADay sentenseOfADay;
+	
+	@Before
+	public void setup() {
+		databaseForTest = new DatabaseForTest();
+		serverForTest = new ServerForTest();
+		sentenseOfADay = new SentenceOfADay(databaseForTest, serverForTest);
+	}
 	
 	private class DatabaseForTest extends Database{
 		public boolean testResult = true;
@@ -35,11 +45,6 @@ public class SentenceOfADay_Test {
 		}
 		
 	}
-	
-	DatabaseForTest databaseForTest = new DatabaseForTest();
-	ServerForTest serverForTest = new ServerForTest();
-	
-	SentenceOfADay sentenseOfADay = new SentenceOfADay(databaseForTest, serverForTest);
 	
 	@Test
 	public void getSentence_sentenceInDatabase_returnNothingNew() {
