@@ -1,55 +1,48 @@
 package com.learning.test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
 
 import com.learning.mockito_tutorial.DatabaseInterface;
 import com.learning.mockito_tutorial.SentenceOfADay;
 import com.learning.mockito_tutorial.ServerInterface;
 
 public class SentenceOfADay_Test {
-	DatabaseForTest databaseForTest;
+	@Mock
+	DatabaseInterface databaseForTest;
+	@Mock
 	ServerInterface serverForTest;
 	SentenceOfADay sentenseOfADay;
 	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
 	@Before
 	public void setup() {
-		databaseForTest = new DatabaseForTest();
-		serverForTest = new ServerForTest();
 		sentenseOfADay = new SentenceOfADay(databaseForTest, serverForTest);
 	}
 	
-	private class DatabaseForTest implements DatabaseInterface{
-		public boolean testResult = true;
-
-		public boolean has(String sentence) {
-			return testResult;
-		}
-		
-		public void open(String username, String password) {}
-	}
-	
-	private class ServerForTest implements ServerInterface{
-
-		public String getTodaysSentence()
-		{
-			return "Todays sentence";
-		}
-		
-	}
 	
 	@Test
 	public void getSentence_sentenceInDatabase_returnNothingNew() {
+		when(serverForTest.getTodaysSentence()).thenReturn("Hello");
+		when(databaseForTest.has("Hello")).thenReturn(true);
+
 		assertEquals(SentenceOfADay.sentenceIsInDatabase, sentenseOfADay.getSentence());
-		
 	}
 	
 	@Test
 	public void getSentence_sentenceIsntDatabase_returnSentence() {
-		databaseForTest.testResult = false;
-		assertEquals(serverForTest.getTodaysSentence(), sentenseOfADay.getSentence());
+		when(serverForTest.getTodaysSentence()).thenReturn("Hello");
+		when(databaseForTest.has("Hello")).thenReturn(false);
 		
+		assertEquals(serverForTest.getTodaysSentence(), sentenseOfADay.getSentence());
 	}
 
 }
