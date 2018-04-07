@@ -8,8 +8,8 @@ import com.learning.mockito_tutorial.Server;
 
 public class SentenceOfADay {
 
-	private static Database database;
-	private static Server server;
+	private Database database;
+	private Server server;
 
 	public SentenceOfADay(Database databaseName, Server serverName) {
 		database = databaseName;
