@@ -13,7 +13,7 @@ public class Database {
 	
 	private List<String> sentences;
 
-	Database() {
+	public Database() {
 		sentences = new LinkedList<String>();
 		sentences.add("Never compare your weaknesses to other people’s strengths");
 		sentences.add("We cannot change the cards we are dealt, just how we play the hand");
