@@ -8,18 +8,12 @@ import com.learning.mockito_tutorial.Server;
 
 public class SentenceOfADay {
 
-	private Credentials credentialsDatabase;
-	private Credentials credentialsServer;
+	private static Database database;
+	private static Server server;
 
-	private Database database;
-	private Server server;
-
-	public SentenceOfADay() {
-		credentialsDatabase = new Credentials("Stephanie", "abcde");
-
-		database = new Database();
-		database.open(credentialsDatabase.getUsername(), credentialsDatabase.getPassword());
-		server = new Server("http://address.not.known");
+	public SentenceOfADay(Database databaseName, Server serverName) {
+		database = databaseName;
+		server = serverName;
 	}
 
 	public String getSentence() {
