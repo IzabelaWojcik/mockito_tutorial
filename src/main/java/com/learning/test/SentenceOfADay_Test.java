@@ -13,10 +13,12 @@ import com.learning.mockito_tutorial.Server;
 
 public class SentenceOfADay_Test {
 
+	
 	private class DatabaseForTest extends Database{
+		public boolean testResult = true;
 		@Override
 		public boolean has(String sentence) {
-			return true;
+			return testResult;
 		}
 	}
 	
@@ -42,6 +44,13 @@ public class SentenceOfADay_Test {
 	@Test
 	public void getSentence_sentenceInDatabase_returnNothingNew() {
 		assertEquals(SentenceOfADay.sentenceIsInDatabase, sentenseOfADay.getSentence());
+		
+	}
+	
+	@Test
+	public void getSentence_sentenceIsntDatabase_returnSentence() {
+		databaseForTest.testResult = false;
+		assertEquals(serverForTest.getTodaysSentence(), sentenseOfADay.getSentence());
 		
 	}
 
