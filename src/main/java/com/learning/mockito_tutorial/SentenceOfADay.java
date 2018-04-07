@@ -10,6 +10,7 @@ public class SentenceOfADay {
 
 	private Database database;
 	private Server server;
+	public final static String sentenceIsInDatabase = "Nothing new";
 
 	public SentenceOfADay(Database databaseName, Server serverName) {
 		database = databaseName;
@@ -19,7 +20,7 @@ public class SentenceOfADay {
 	public String getSentence() {
 		String sentence = server.getTodaysSentence();
 		if(database.has(sentence))
-			return "Nothing new";
+			return sentenceIsInDatabase;
 		
 		return sentence;
 	}
