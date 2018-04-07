@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Database {
+public class Database implements DatabaseInterface{
 
 	boolean opened = false;
 	private Map<String, String> users;

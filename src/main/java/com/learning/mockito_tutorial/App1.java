@@ -6,8 +6,8 @@ public class App1 {
 	private static Credentials credentialsDatabase;
 	private Credentials credentialsServer;
 
-	private static Database database;
-	private static Server server;
+	private static DatabaseInterface database;
+	private static ServerInterface server;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		credentialsDatabase = new Credentials("Stephanie", "abcde");

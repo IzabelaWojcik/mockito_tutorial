@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.*;
 
-public class Server {
+public class Server implements ServerInterface{
 
 	private String address;
 	Calendar calendar;

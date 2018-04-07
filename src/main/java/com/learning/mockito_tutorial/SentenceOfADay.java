@@ -8,11 +8,11 @@ import com.learning.mockito_tutorial.Server;
 
 public class SentenceOfADay {
 
-	private Database database;
-	private Server server;
+	private DatabaseInterface database;
+	private ServerInterface server;
 	public final static String sentenceIsInDatabase = "Nothing new";
 
-	public SentenceOfADay(Database databaseName, Server serverName) {
+	public SentenceOfADay(DatabaseInterface databaseName, ServerInterface serverName) {
 		database = databaseName;
 		server = serverName;
 	}
